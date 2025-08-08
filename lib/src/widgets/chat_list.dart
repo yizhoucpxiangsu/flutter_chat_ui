@@ -24,6 +24,7 @@ class ChatList extends StatefulWidget {
     this.scrollPhysics,
     this.typingIndicatorOptions,
     required this.useTopSafeAreaInset,
+    required this.makeMsgStartFromTop,
   });
 
   /// A custom widget at the bottom of the list.
@@ -67,6 +68,8 @@ class ChatList extends StatefulWidget {
 
   /// Whether to use top safe area inset for the list.
   final bool useTopSafeAreaInset;
+
+  final bool makeMsgStartFromTop;
 
   @override
   State<ChatList> createState() => _ChatListState();
@@ -265,6 +268,7 @@ class _ChatListState extends State<ChatList>
           keyboardDismissBehavior: widget.keyboardDismissBehavior,
           physics: widget.scrollPhysics,
           reverse: true,
+          shrinkWrap: widget.makeMsgStartFromTop,
           slivers: [
             if (widget.bottomWidget != null)
               SliverToBoxAdapter(child: widget.bottomWidget),
